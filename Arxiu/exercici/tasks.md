@@ -9,7 +9,7 @@
 
 ## Fase 2. Lectura de dades
 
-- [ ] Llegir el fitxer CSV amb `FileReader`
+- [x] Llegir el fitxer CSV amb `FileReader`
 - [ ] Convertir el CSV en una llista d'objectes JavaScript
 - [ ] Validar que el CSV té les columnes esperades (`userId`,`movieId`,`title`,`genres`,`rating`,`timestamp`)
 
