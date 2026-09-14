@@ -11,11 +11,11 @@
 
 - [x] Llegir el fitxer CSV amb `FileReader`
 - [x] Convertir el CSV en una llista d'objectes JavaScript
-- [ ] Validar que el CSV té les columnes esperades (`userId`,`movieId`,`title`,`genres`,`rating`,`timestamp`)
+- [x] Validar que el CSV té les columnes esperades (`userId`,`movieId`,`title`,`genres`,`rating`,`timestamp`)
 
 ## Fase 3. Visualització tabular
 
-- [ ] Mostrar les dades en una taula HTML ordenada per la columna `rating`
+- [x] Mostri les dades en una taula paginada (5 files per defecte), ordenable per `rating`.
 - [ ] Afegir les capçaleres de columna
 - [ ] Mostrar un missatge si no hi ha dades
 
@@ -30,7 +30,7 @@
 
 ## Fase 5. Gràfic
 
-- [ ] Agrupar les dades per `genres` i `rating`
+- [ ] Agrupar les dades per cada un dels `genres` i `rating`
 - [ ] Calcular la mitjana `rating` per a cada combinació
 - [ ] Generar un gràfic de barres amb Chart.js
 - [ ] Afegir un títol i etiquetes al gràfic
