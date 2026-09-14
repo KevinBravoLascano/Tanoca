@@ -3,7 +3,7 @@
 ## Fase 1. Estructura bàsica
 
 - [x] Crear `index.html` amb l'estructura HTML
-- [ ] Crear `styles.css` amb els estils bàsics
+- [x] Crear `styles.css` amb els estils bàsics
 - [ ] Crear `app.js` amb la lògica principal
 - [ ] Afegir el selector de fitxer CSV a l'HTML
 
