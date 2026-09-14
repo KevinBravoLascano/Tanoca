@@ -5,7 +5,7 @@
 - [x] Crear `index.html` amb l'estructura HTML
 - [x] Crear `styles.css` amb els estils bàsics
 - [x] Crear `app.js` amb la lògica principal
-- [ ] Afegir el selector de fitxer CSV a l'HTML
+- [x] Afegir el selector de fitxer CSV a l'HTML
 
 ## Fase 2. Lectura de dades
 
