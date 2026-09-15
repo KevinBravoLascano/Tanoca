@@ -14,6 +14,7 @@ const applicationState = {
   csvText: "",
   chart: null,
   missingColumns: [],
+  genreRatingGroups: [],
   currentPage: 1,
   rowsPerPage: 5,
   sortDescending: true
@@ -82,6 +83,37 @@ function parseCsv(csvText) {
       row[header] = record[index] ?? "";
       return row;
     }, {}));
+}
+
+function groupRatingsByGenreAndRating(rows) {
+  const groups = new Map();
+
+  rows.forEach((row) => {
+    const rating = Number(row.rating);
+
+    if (!Number.isFinite(rating)) {
+      return;
+    }
+
+    String(row.genres ?? "")
+      .split("|")
+      .map((genre) => genre.trim())
+      .filter((genre) => genre.length > 0)
+      .forEach((genre) => {
+        const key = `${genre}|${rating}`;
+        const group = groups.get(key) ?? {
+          genre,
+          rating,
+          total: 0,
+          count: 0
+        };
+        group.total += rating;
+        group.count += 1;
+        groups.set(key, group);
+      });
+  });
+
+  return [...groups.values()];
 }
 
 function renderSummary(rows) {
@@ -218,6 +250,7 @@ function readCsvFile(event) {
     applicationState.rows = applicationState.missingColumns.length === 0
       ? parseCsv(applicationState.csvText)
       : [];
+    applicationState.genreRatingGroups = groupRatingsByGenreAndRating(applicationState.rows);
     renderSummary(applicationState.rows);
     renderTable(applicationState.rows);
   });
