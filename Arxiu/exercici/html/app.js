@@ -87,8 +87,9 @@ function parseCsv(csvText) {
 function renderSummary(rows) {
   const uniqueMoviesCount = document.querySelector("#unique-movies-count");
   const uniqueUsersCount = document.querySelector("#unique-users-count");
+  const ratingsCount = document.querySelector("#ratings-count");
 
-  if (!uniqueMoviesCount || !uniqueUsersCount) {
+  if (!uniqueMoviesCount || !uniqueUsersCount || !ratingsCount) {
     return;
   }
 
@@ -107,6 +108,7 @@ function renderSummary(rows) {
   );
 
   uniqueUsersCount.textContent = String(uniqueUsers.size);
+  ratingsCount.textContent = String(rows.length);
 }
 
 function renderTable(rows) {

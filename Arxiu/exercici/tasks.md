@@ -23,7 +23,7 @@
 
 - [x] Calcular el total de nombre de pel·lícules úniques de la columna `title`
 - [x] Calcular la quantitat de usuaris unics de la columna `userId`
-- [ ] Calcular el nombre total de valoracions de la columna `rating`
+- [x] Calcular el nombre total de valoracions de la columna `rating`
 - [ ] Calcular la mitjana de `rating`
 - [ ] Mostrar pel·licules amb mes quantitat de valoracions miran columnes `movieId` i `rating`
 - [ ] Mostrar els resultats en una secció de resum
