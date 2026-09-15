@@ -89,8 +89,9 @@ function renderSummary(rows) {
   const uniqueUsersCount = document.querySelector("#unique-users-count");
   const ratingsCount = document.querySelector("#ratings-count");
   const averageRating = document.querySelector("#average-rating");
+  const topRatedMovie = document.querySelector("#top-rated-movie");
 
-  if (!uniqueMoviesCount || !uniqueUsersCount || !ratingsCount || !averageRating) {
+  if (!uniqueMoviesCount || !uniqueUsersCount || !ratingsCount || !averageRating || !topRatedMovie) {
     return;
   }
 
@@ -119,6 +120,28 @@ function renderSummary(rows) {
     : 0;
 
   averageRating.textContent = ratingAverage.toFixed(2);
+
+  const movieRatings = new Map();
+  rows.forEach((row) => {
+    const movieId = String(row.movieId ?? "").trim();
+
+    if (!movieId) {
+      return;
+    }
+
+    const movie = movieRatings.get(movieId) ?? {
+      title: String(row.title ?? "").trim(),
+      count: 0
+    };
+    movie.count += 1;
+    movieRatings.set(movieId, movie);
+  });
+
+  const topMovie = [...movieRatings.values()]
+    .sort((firstMovie, secondMovie) => secondMovie.count - firstMovie.count)[0];
+  topRatedMovie.textContent = topMovie
+    ? `${topMovie.title} (${topMovie.count} valoracions)`
+    : "-";
 }
 
 function renderTable(rows) {

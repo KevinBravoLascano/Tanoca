@@ -25,7 +25,7 @@
 - [x] Calcular la quantitat de usuaris unics de la columna `userId`
 - [x] Calcular el nombre total de valoracions de la columna `rating`
 - [x] Calcular la mitjana de `rating`
-- [ ] Mostrar pel·licules amb mes quantitat de valoracions miran columnes `movieId` i `rating`
+- [x] Mostrar la pel·licula amb mes quantitat de valoracions miran columnes `movieId`
 - [ ] Mostrar els resultats en una secció de resum
 
 ## Fase 5. Gràfic
