@@ -90,8 +90,9 @@ function renderTable(rows) {
   const pageIndicator = document.querySelector("#page-indicator");
   const previousPageButton = document.querySelector("#previous-page");
   const nextPageButton = document.querySelector("#next-page");
+  const emptyState = document.querySelector("#empty-state");
 
-  if (!tableHead || !tableBody || !pageIndicator || !previousPageButton || !nextPageButton) {
+  if (!tableHead || !tableBody || !pageIndicator || !previousPageButton || !nextPageButton || !emptyState) {
     return;
   }
 
@@ -102,6 +103,17 @@ function renderTable(rows) {
     headerRow.appendChild(headerCell);
   });
   tableHead.replaceChildren(headerRow);
+
+  if (rows.length === 0) {
+    tableBody.replaceChildren();
+    pageIndicator.textContent = "Sense dades";
+    previousPageButton.disabled = true;
+    nextPageButton.disabled = true;
+    emptyState.hidden = false;
+    return;
+  }
+
+  emptyState.hidden = true;
 
   const sortedRows = [...rows].sort((firstRow, secondRow) => (
     (Number(secondRow.rating) - Number(firstRow.rating))
