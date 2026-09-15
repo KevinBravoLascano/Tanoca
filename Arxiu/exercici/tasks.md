@@ -32,7 +32,7 @@
 
 - [x] Agrupar les dades per cada un dels `genres` i `rating`
 - [x] Calcular la mitjana `rating` per a cada genre
-- [ ] Generar un gràfic de barres amb Chart.js
+- [x] Generar un gràfic de barres amb Chart.js
 - [ ] Afegir un títol i etiquetes al gràfic
 
 ## Fase 6. Millores finals

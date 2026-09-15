@@ -118,6 +118,42 @@ function groupRatingsByGenre(rows) {
   }));
 }
 
+function renderChart(groups) {
+  const chartCanvas = document.querySelector("#ratings-chart");
+
+  if (!chartCanvas || typeof Chart === "undefined") {
+    return;
+  }
+
+  if (applicationState.chart) {
+    applicationState.chart.destroy();
+  }
+
+  applicationState.chart = new Chart(chartCanvas, {
+    type: "bar",
+    data: {
+      labels: groups.map((group) => group.genre),
+      datasets: [{
+        label: "Mitjana de rating",
+        data: groups.map((group) => group.averageRating),
+        backgroundColor: "#486581",
+        borderColor: "#243b53",
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 5
+        }
+      }
+    }
+  });
+}
+
 function renderSummary(rows) {
   const uniqueMoviesCount = document.querySelector("#unique-movies-count");
   const uniqueUsersCount = document.querySelector("#unique-users-count");
@@ -255,6 +291,7 @@ function readCsvFile(event) {
     applicationState.genreRatingGroups = groupRatingsByGenre(applicationState.rows);
     renderSummary(applicationState.rows);
     renderTable(applicationState.rows);
+    renderChart(applicationState.genreRatingGroups);
   });
 
   reader.readAsText(file);
