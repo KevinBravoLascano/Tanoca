@@ -32,6 +32,31 @@ section {
   border-radius: 6px;
 }
 
+#stats-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+#stats-summary > div {
+  padding: 1rem;
+  background: #f4f6f8;
+  border-left: 4px solid #486581;
+}
+
+#stats-summary dt {
+  color: #486581;
+  font-size: 0.9rem;
+}
+
+#stats-summary dd {
+  margin: 0.35rem 0 0;
+  color: #102a43;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
