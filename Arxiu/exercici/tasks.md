@@ -38,8 +38,8 @@
 ## Fase 6. Millores finals
 
 - [x] Afegir estils visuals (colors, espaiat, tipografia) basats en els color del Real Madrid (blanc,blau,morado)
-- [ ] Afegir missatges d'error per a fitxers no vàlids
-- [ ] Afegir un missatge de càrrega mentre es processa
-- [ ] Revisar el codi i afegir comentaris
-- [ ] Provar amb diferents fitxers CSV
-- [ ] Informar la persona usuària que el procés de desenvolupament s'ha completat.
+- [x] Afegir missatges d'error per a fitxers no vàlids
+- [x] Afegir un missatge de càrrega mentre es processa
+- [x] Revisar el codi i afegir comentaris simples de explicacio de la funcio
+- [x] Provar amb diferents fitxers CSV
+- [x] Informar la persona usuària que el procés de desenvolupament s'ha completat.

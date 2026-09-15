@@ -21,6 +21,7 @@ const applicationState = {
 };
 
 function parseCsvRecords(csvText) {
+  // Divideix el CSV en files i camps, respectant comes dins de cometes.
   const records = [];
   let record = [];
   let value = "";
@@ -86,6 +87,7 @@ function parseCsv(csvText) {
 }
 
 function groupRatingsByGenre(rows) {
+  // Calcula una mitjana de rating per a cada gènere separat per "|".
   const groups = new Map();
 
   rows.forEach((row) => {
@@ -116,6 +118,25 @@ function groupRatingsByGenre(rows) {
     ...group,
     averageRating: group.total / group.count
   }));
+}
+
+function showFileError(message) {
+  const fileError = document.querySelector("#file-error");
+
+  if (!fileError) {
+    return;
+  }
+
+  fileError.textContent = message;
+  fileError.hidden = !message;
+}
+
+function showLoading(isLoading) {
+  const loadingState = document.querySelector("#loading-state");
+
+  if (loadingState) {
+    loadingState.hidden = !isLoading;
+  }
 }
 
 function renderChart(groups) {
@@ -171,6 +192,7 @@ function renderChart(groups) {
 }
 
 function renderSummary(rows) {
+  // Actualitza totes les mètriques del resum amb les files carregades.
   const uniqueMoviesCount = document.querySelector("#unique-movies-count");
   const uniqueUsersCount = document.querySelector("#unique-users-count");
   const ratingsCount = document.querySelector("#ratings-count");
@@ -290,17 +312,41 @@ function renderTable(rows) {
 }
 
 function readCsvFile(event) {
+  // Valida i llegeix el fitxer seleccionat abans de renderitzar les dades.
   const [file] = event.target.files;
 
   if (!file) {
     return;
   }
 
+  showFileError("");
+  showLoading(true);
+
+  if (!file.name.toLowerCase().endsWith(".csv") && file.type !== "text/csv") {
+    showLoading(false);
+    showFileError("El fitxer seleccionat no és un CSV vàlid.");
+    event.target.value = "";
+    return;
+  }
+
   const reader = new FileReader();
 
+  reader.addEventListener("error", () => {
+    showLoading(false);
+    showFileError("No s'ha pogut llegir el fitxer CSV.");
+  });
+
   reader.addEventListener("load", () => {
+    showLoading(false);
     applicationState.csvText = String(reader.result ?? "");
     applicationState.missingColumns = validateCsvColumns(applicationState.csvText);
+
+    if (applicationState.missingColumns.length > 0) {
+      showFileError(
+        `El CSV no és vàlid. Falta(n) la(s) columna(es): ${applicationState.missingColumns.join(", ")}.`
+      );
+    }
+
     applicationState.rows = applicationState.missingColumns.length === 0
       ? parseCsv(applicationState.csvText)
       : [];
