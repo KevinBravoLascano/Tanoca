@@ -84,6 +84,22 @@ function parseCsv(csvText) {
     }, {}));
 }
 
+function renderSummary(rows) {
+  const uniqueMoviesCount = document.querySelector("#unique-movies-count");
+
+  if (!uniqueMoviesCount) {
+    return;
+  }
+
+  const uniqueTitles = new Set(
+    rows
+      .map((row) => String(row.title ?? "").trim())
+      .filter((title) => title.length > 0)
+  );
+
+  uniqueMoviesCount.textContent = String(uniqueTitles.size);
+}
+
 function renderTable(rows) {
   const tableHead = document.querySelector("#data-table thead");
   const tableBody = document.querySelector("#data-table tbody");
@@ -158,6 +174,7 @@ function readCsvFile(event) {
     applicationState.rows = applicationState.missingColumns.length === 0
       ? parseCsv(applicationState.csvText)
       : [];
+    renderSummary(applicationState.rows);
     renderTable(applicationState.rows);
   });
 
@@ -176,6 +193,7 @@ function initializeApp() {
   }
 
   table.setAttribute("aria-live", "polite");
+  renderSummary(applicationState.rows);
   fileInput.addEventListener("change", readCsvFile);
   sortRatingButton.addEventListener("click", () => {
     applicationState.sortDescending = !applicationState.sortDescending;
