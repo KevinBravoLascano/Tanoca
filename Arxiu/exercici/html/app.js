@@ -85,14 +85,23 @@ function parseCsv(csvText) {
 }
 
 function renderTable(rows) {
+  const tableHead = document.querySelector("#data-table thead");
   const tableBody = document.querySelector("#data-table tbody");
   const pageIndicator = document.querySelector("#page-indicator");
   const previousPageButton = document.querySelector("#previous-page");
   const nextPageButton = document.querySelector("#next-page");
 
-  if (!tableBody || !pageIndicator || !previousPageButton || !nextPageButton) {
+  if (!tableHead || !tableBody || !pageIndicator || !previousPageButton || !nextPageButton) {
     return;
   }
+
+  const headerRow = document.createElement("tr");
+  expectedColumns.forEach((column) => {
+    const headerCell = document.createElement("th");
+    headerCell.textContent = column;
+    headerRow.appendChild(headerCell);
+  });
+  tableHead.replaceChildren(headerRow);
 
   const sortedRows = [...rows].sort((firstRow, secondRow) => (
     (Number(secondRow.rating) - Number(firstRow.rating))

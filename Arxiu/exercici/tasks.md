@@ -16,7 +16,7 @@
 ## Fase 3. Visualització tabular
 
 - [x] Mostri les dades en una taula paginada (5 files per defecte), ordenable per `rating`.
-- [ ] Afegir les capçaleres de columna
+- [x] Afegir les capçaleres de columna
 - [ ] Mostrar un missatge si no hi ha dades
 
 ## Fase 4. Resum estadístic
