@@ -85,7 +85,7 @@ function parseCsv(csvText) {
     }, {}));
 }
 
-function groupRatingsByGenreAndRating(rows) {
+function groupRatingsByGenre(rows) {
   const groups = new Map();
 
   rows.forEach((row) => {
@@ -100,10 +100,9 @@ function groupRatingsByGenreAndRating(rows) {
       .map((genre) => genre.trim())
       .filter((genre) => genre.length > 0)
       .forEach((genre) => {
-        const key = `${genre}|${rating}`;
+        const key = genre;
         const group = groups.get(key) ?? {
           genre,
-          rating,
           total: 0,
           count: 0
         };
@@ -253,7 +252,7 @@ function readCsvFile(event) {
     applicationState.rows = applicationState.missingColumns.length === 0
       ? parseCsv(applicationState.csvText)
       : [];
-    applicationState.genreRatingGroups = groupRatingsByGenreAndRating(applicationState.rows);
+    applicationState.genreRatingGroups = groupRatingsByGenre(applicationState.rows);
     renderSummary(applicationState.rows);
     renderTable(applicationState.rows);
   });
