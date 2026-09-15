@@ -113,7 +113,10 @@ function groupRatingsByGenreAndRating(rows) {
       });
   });
 
-  return [...groups.values()];
+  return [...groups.values()].map((group) => ({
+    ...group,
+    averageRating: group.total / group.count
+  }));
 }
 
 function renderSummary(rows) {
