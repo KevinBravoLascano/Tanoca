@@ -144,10 +144,26 @@ function renderChart(groups) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: "Valoració mitjana per gènere"
+        }
+      },
       scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Gènere"
+          }
+        },
         y: {
           beginAtZero: true,
-          max: 5
+          max: 5,
+          title: {
+            display: true,
+            text: "Valoració mitjana"
+          }
         }
       }
     }

@@ -33,11 +33,11 @@
 - [x] Agrupar les dades per cada un dels `genres` i `rating`
 - [x] Calcular la mitjana `rating` per a cada genre
 - [x] Generar un gràfic de barres amb Chart.js
-- [ ] Afegir un títol i etiquetes al gràfic
+- [x] Afegir un títol i etiquetes al gràfic
 
 ## Fase 6. Millores finals
 
-- [ ] Afegir estils visuals (colors, espaiat, tipografia)
+- [x] Afegir estils visuals (colors, espaiat, tipografia) basats en els color del Real Madrid (blanc,blau,morado)
 - [ ] Afegir missatges d'error per a fitxers no vàlids
 - [ ] Afegir un missatge de càrrega mentre es processa
 - [ ] Revisar el codi i afegir comentaris
