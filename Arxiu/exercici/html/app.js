@@ -88,8 +88,9 @@ function renderSummary(rows) {
   const uniqueMoviesCount = document.querySelector("#unique-movies-count");
   const uniqueUsersCount = document.querySelector("#unique-users-count");
   const ratingsCount = document.querySelector("#ratings-count");
+  const averageRating = document.querySelector("#average-rating");
 
-  if (!uniqueMoviesCount || !uniqueUsersCount || !ratingsCount) {
+  if (!uniqueMoviesCount || !uniqueUsersCount || !ratingsCount || !averageRating) {
     return;
   }
 
@@ -109,6 +110,15 @@ function renderSummary(rows) {
 
   uniqueUsersCount.textContent = String(uniqueUsers.size);
   ratingsCount.textContent = String(rows.length);
+
+  const numericRatings = rows
+    .map((row) => Number(row.rating))
+    .filter((rating) => Number.isFinite(rating));
+  const ratingAverage = numericRatings.length > 0
+    ? numericRatings.reduce((total, rating) => total + rating, 0) / numericRatings.length
+    : 0;
+
+  averageRating.textContent = ratingAverage.toFixed(2);
 }
 
 function renderTable(rows) {
